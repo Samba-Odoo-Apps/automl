@@ -17,26 +17,26 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 from auto.views import upload_doc_view, build_view,\
-predict_view, upload_predict_view,\
-predict_doc_list_view, build_delete_view
+    predict_view, upload_predict_view,\
+    predict_doc_list_view, build_delete_view
 from django.views.generic import CreateView, ListView, TemplateView
 from django.conf.urls.static import static
 from auto.models import Document
 from django.conf import settings
 urlpatterns = [
-    path("",TemplateView.as_view(
+    path("", TemplateView.as_view(
         template_name="auto/home.html"
-        )),
+    )),
     path('admin/', admin.site.urls),
-    path("upload_build/",upload_doc_view),
-    re_path("upload_predict/",upload_predict_view),
+    path("upload_build/", upload_doc_view),
+    re_path("upload_predict/", upload_predict_view),
 
-    path("list_models/",ListView.as_view(model=Document,)),
+    path("list_models/", ListView.as_view(model=Document,)),
     re_path("list_predictions/(?P<pk>[0-9]*)", predict_doc_list_view),
 
-    re_path("build/(?P<pk>[0-9]+)/$",build_view),
-    re_path("build_delete/(?P<pk>[0-9]+)/$",build_delete_view),
+    re_path("build/(?P<pk>[0-9]+)/$", build_view),
+    re_path("build_delete/(?P<pk>[0-9]+)/$", build_delete_view),
     re_path("predict/(?P<pk>[0-9a-z_]+)/$", predict_view),
-    
-    
-]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
