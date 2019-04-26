@@ -1,0 +1,27 @@
+{% extends 'auto/home.html'%}
+{% block content%}
+{% block pageheader%}
+PREDICT DOCUMENTS LIST
+{% endblock%}
+<table border=1>
+	<tr>
+		<th>file name</th>
+		<th>target</th>
+		<th>Model</th>
+		<th>Scores</th>
+		<th>DOCUMENT</th>
+		<th>Operations</th>
+		
+	</tr>
+	{% for row in data %}
+	<tr>
+		<td>{{ row.data }}</td>
+		<td>{{ row.target }}</td>
+		<td>{{ row.model }}</td>
+		<td>{{ row.scores }}</td>
+		<td>{{ row.doc }}</td>
+		<td><a href="/predict/{{ row.id }}">PREDICT</a></td>
+	</tr>
+	{% endfor %}
+</table>
+{% endblock %}

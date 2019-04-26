@@ -1,0 +1,29 @@
+{% extends 'auto/home.html'%}
+{% block content%}
+{% block pageheader%}
+TRAIN DOCUMENTS LIST
+{% endblock%}
+<table border=1>
+	<tr>
+		<th>file name</th>
+		<th>target</th>
+		<th>Model</th>
+		<th>Scores</th>
+		<th>Operations</th>
+	</tr>
+	{% for row in object_list %}
+	<tr>
+		<td>{{ row.data }}</td>
+		<td>{{ row.target }}</td>
+		<td>{{ row.model }}</td>
+		<td>{{ row.scores }}</td>
+		<td><a href="build/{{ row.id }}">BUILD</a>
+			<a href="build_delete/{{row.id}}">DELETE</a>
+			{% if row.model and row.doc %}
+			<a href="/predict/{{ row.id }}">PREDICT</a>
+			{% endif %}
+		</td>
+	</tr>
+	{% endfor %}
+</table>
+{% endblock %}

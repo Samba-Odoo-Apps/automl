@@ -1,0 +1,12 @@
+{% extends 'auto/home.html'%}
+{% block content%}
+{% block pageheader%}
+UPLOAD DATA
+{% endblock%}
+<p>{{ error }}</p>
+<form method="post" enctype="multipart/form-data">
+	{{ form.as_p}}
+	{% csrf_token %}
+	<input type="submit" value="BUILD MODEL">
+</form>
+{% endblock %}
